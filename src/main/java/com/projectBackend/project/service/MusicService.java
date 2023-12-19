@@ -165,7 +165,7 @@ public class MusicService {
             music.setLyrics(musicDTO.getLyrics());
             music.setReleaseDate(musicDTO.getReleaseDate());
             music.setThumbnailImage(musicDTO.getThumbnailImage());
-            music.setPromoImage(musicDTO.getPromoImage());
+
             music.setMusicInfo(musicDTO.getMusicInfo());
             musicRepository.save(music);
             return true;
@@ -200,6 +200,8 @@ public class MusicService {
             System.out.println("findByNickName try!!!");
             String nickName = userReqDto.getUserNickname();
             Optional<Member> memberOptional = userRepository.findByUserNickname(nickName);
+            // memberOptional에 값이 있다면 해당 엔티티 객체를 반환하고, 없으면 예외를 던짐
+
             System.out.println("memberOptional" + memberOptional);
             // memberOptional가 비어있지 않다면 해당 엔티티 객체 반환
             if (memberOptional.isPresent()) {
@@ -239,7 +241,7 @@ public class MusicService {
             music.setLyrics(musicDTO.getLyrics());
             music.setReleaseDate(musicDTO.getReleaseDate()); // releaseDate 파싱하여 설정
             music.setThumbnailImage(musicDTO.getThumbnailImage());
-            music.setPromoImage(musicDTO.getPromoImage());
+
             music.setMusicInfo(musicDTO.getMusicInfo());
             music.setMember(member);
 
@@ -259,7 +261,7 @@ public class MusicService {
             returnDTO.setLyrics(music.getLyrics());
             returnDTO.setReleaseDate(music.getReleaseDate());
             returnDTO.setThumbnailImage(music.getThumbnailImage());
-            returnDTO.setPromoImage(music.getPromoImage());
+
             returnDTO.setUserNickname(music.getMember().getUserNickname());
             returnDTO.setMusicInfo(music.getMusicInfo());
             musicRepository.save(music);
@@ -286,7 +288,7 @@ public class MusicService {
         music.setLyrics(musicDTO.getLyrics());
         music.setReleaseDate(musicDTO.getReleaseDate()); // releaseDate 파싱하여 설정
         music.setThumbnailImage(musicDTO.getThumbnailImage());
-        music.setPromoImage(musicDTO.getPromoImage());
+
         music.setMusicInfo(musicDTO.getMusicInfo());
         return music;
     }
@@ -303,7 +305,7 @@ public class MusicService {
         }
     }
 
-
+    // MusicUserDto = useDto + musicDto
     // 엔티티 객체를 DTO로 변환
     private MusicUserDto convertEntityToUserDto(Music music, String userNickname) {
         MusicUserDto musicUserDto = new MusicUserDto();
@@ -318,11 +320,12 @@ public class MusicService {
         musicDTO.setLyrics(music.getLyrics());
         musicDTO.setReleaseDate(music.getReleaseDate());
         musicDTO.setThumbnailImage(music.getThumbnailImage());
-        musicDTO.setPromoImage(music.getPromoImage());
+
         musicDTO.setMusicInfo(music.getMusicInfo());
 
         musicUserDto.setMusicDTO(musicDTO);
 
+        // userDto에 닉네임 값 저장
         UserResDto userResDto = new UserResDto();
         userResDto.setUserNickname(userNickname);
         musicUserDto.setUserResDto(userResDto);
