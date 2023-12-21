@@ -2,10 +2,13 @@ package com.projectBackend.project.controller;
 
 
 import com.projectBackend.project.dto.MusicDTO;
+import com.projectBackend.project.dto.MusicHeartDto;
 import com.projectBackend.project.dto.MusicUserDto;
 import com.projectBackend.project.dto.UserReqDto;
 import com.projectBackend.project.entity.Member;
 import com.projectBackend.project.entity.Music;
+import com.projectBackend.project.repository.MusicHeartRepository;
+import com.projectBackend.project.service.MusicHeartService;
 import com.projectBackend.project.service.MusicService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +32,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MusicController {
     private  final MusicService musicService;
+    private final MusicHeartService musicHeartService;
 
 //    @Autowired
 //    public MusicController(MusicService musicService) {
@@ -93,6 +97,12 @@ public class MusicController {
     }
 
 
+
+
+
+
+
+
     //음악 등록
     @PostMapping("/new")
     public ResponseEntity<MusicUserDto> addMusic(@RequestBody MusicUserDto musicUserDto) {
@@ -108,6 +118,8 @@ public class MusicController {
 
         return ResponseEntity.ok(responseDto);
     }
+
+
 
 
 

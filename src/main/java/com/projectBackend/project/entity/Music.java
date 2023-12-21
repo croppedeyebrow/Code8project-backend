@@ -7,6 +7,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "music")
@@ -46,6 +47,11 @@ public class Music {
     private String thumbnailImage;
 
 
+    @Column(name = "heart_count")
+    private int heartCount;
+
+    @Column(name = "music_file")
+    private String musicFile;
 
     @Column(name = "music_info")
     private String musicInfo;
@@ -53,4 +59,6 @@ public class Music {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id") // 외래 키 지정
     private Member member;
+
+
 }

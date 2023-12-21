@@ -7,6 +7,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -25,7 +26,8 @@ public class MusicDTO {
     private String lyrics;
     private LocalDate releaseDate;
     private String thumbnailImage;
-
+    private String musicFile;
+    private int heartCount;
     private String musicInfo;
 
 
@@ -43,7 +45,8 @@ public class MusicDTO {
                 .lyrics(music.getLyrics())
                 .releaseDate(music.getReleaseDate())
                 .thumbnailImage(music.getThumbnailImage())
-
+                .musicFile(music.getMusicFile())
+                .heartCount(music.getHeartCount())
                 .musicInfo(music.getMusicInfo())
                 .build();
     }
@@ -59,13 +62,18 @@ public class MusicDTO {
                 .lyrics(lyrics)
                 .releaseDate(releaseDate) // LocalDate을 직접 사용합니다.
                 .thumbnailImage(thumbnailImage)
-
+                .musicFile(musicFile)
+                .heartCount(heartCount) // 초기값은 0.
                 .musicInfo(musicInfo)
-                .member(member) // Member 객체를 이용하여 userNickname을 설정합니다.
+                .member(member) // Member 객체를 이용하여 userNickname을 설정.
                 .build();
     }
 
 
 
 }
+
+
+
+
 
