@@ -78,17 +78,14 @@ public class MusicController {
         }
     }
 
-
-    //음악 삭제
+    //음악 삭제 -
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Boolean> musicDelete(@PathVariable Long id) {
         boolean isTrue = musicService.deleteMusic(id);
         return ResponseEntity.ok(isTrue);
     }
 
-
-    //음악 수정
-
+    //음악 수정 -
     @PutMapping("/modify/{id}")
     public  ResponseEntity<Boolean> musicModify(@PathVariable Long id, @RequestBody MusicDTO musicDTO) {
         boolean isTrue = musicService.modifyMusic(id,musicDTO);
@@ -96,14 +93,7 @@ public class MusicController {
 
     }
 
-
-
-
-
-
-
-
-    //음악 등록
+    //음악 등록 -
     @PostMapping("/new")
     public ResponseEntity<MusicUserDto> addMusic(@RequestBody MusicUserDto musicUserDto) {
 
